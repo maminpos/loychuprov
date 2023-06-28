@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<head>
+  <title>Linear Regression Plot</title>
+  <meta charset="utf-8">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    :root {
+      --index: 1vw;
+    }
+
+    body {
+      background-color: #333;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    table {
+      margin: 20px auto;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #555;
+    }
+
+    td {
+      background-color: #777;
+      cursor: pointer;
+    }
+
+    td[contenteditable="true"]:focus {
+      outline: 2px solid #fff;
+    }
+
+    .button_restart {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-family: Arial, sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 16px;
+      letter-spacing: 0.05vw;
+      padding: 12px 40px;
+      color: #efefefff;
+      background-color: rgb(0, 0, 0, 0);
+      border: 3px solid rgba(222, 220, 213, 0.4);
+      border-radius: 40px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .button_restart:hover {
+      border: 3px solid #efefef;
+      transition: 0.7s;
+    }
+
+    .result {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    #chart {
+      width: 1000px;
+      height: 500px;
+      margin: 0 auto;
+    }
+    .button_restart2 {
+      position: relative;
+      margin-top: 0;
+      font-family: Arial, sans-serif;
+      font-weight: 600;
+      font-size: calc(var(--index) * 0.8);
+      letter-spacing: -0.05vw;
+      padding: calc(var(--index) * 0.6) calc(var(--index) * 1.2);
+      color: #EFEFEFFF;
+      background-color: rgb(0, 0, 0, 0);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .button_restart2::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background-color: #efefef;
+      transition: width 1s;
+    }
+    .button_restart2:hover::before {
+      width: 100%;
+    }
+    .popup3 {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+
+    .popup-content3 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #3b3b3b;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      border-radius: 15px;
+    }
+
+    .close3 {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .formula {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <button class="button_restart" onclick="openPage2()" type="button">Назад</button>
+</div>
+<table id="table">
+  <thead>
+  <tr>
+    <th>Инвестиции в основной капитал страны руб.</th>
+    <th>ВВП руб.</th>
+    <th>Год</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td contenteditable="true">12443.6</td>
+    <td contenteditable="true">60114</td>
+    <td>2011</td>
+  </tr>
+  <tr>
+    <td contenteditable="true">14301.7</td>
+    <td contenteditable="true">68103.4</td>
+    <td>2012</td>
+  </tr>
+  <tr>
+    <td contenteditable="true">15618.9</td>
+    <td contenteditable="true">72985.7</td>
+    <td>2013</td>
+  </tr>
+  <tr>
+    <td contenteditable="true">16438.2</td>
+    <td contenteditable="true">79030.04</td>
+    <td>2014</td>
+  </tr>
+  <tr>
+    <td contenteditable="true">16617.47</td>
+    <td contenteditable="true">83087.36</td>
+    <td>2015</td>
+  </tr>
+  <tr>
+    <td contenteditable="true">18236.2</td>
+    <td contenteditable="true">85616.1</td>
+    <td>2016</td>
+  </tr>
+  <tr>
+    <td contenteditable="true">19654.4</td>
+    <td contenteditable="true">91843.2</td>
+    <td>2017</td>
+  </tr>
+  <tr>
+    <td contenteditable="true">20772.3</td>
+    <td contenteditable="true">103861.7</td>
+    <td>2018</td>
+  </tr>
+  <tr>
+    <td contenteditable="true">22360.1</td>
+    <td contenteditable="true">109608.3</td>
+    <td>2019</td>
+  </tr>
+  <tr>
+    <td contenteditable="true">23146.5</td>
+    <td contenteditable="true">107658.2</td>
+    <td>2020</td>
+  </tr>
+  <tr>
+    <td contenteditable="true">26923.7</td>
+    <td contenteditable="true">135295</td>
+    <td>2021</td>
+  </tr>
+  </tbody>
+</table>
+<div class="formula">
+  <button class="button_restart2" onclick="openPopup3()" type="button">y = a + b * x</button>
+</div>
+<div id="popup3" class="popup3">
+  <div class="popup-content3">
+    <span class="close3" onclick="closePopup3()">&times;</span>
+    <p>y представляет зависимую переменную (в данном случае доля инвестиций в ВВП)<br>
+      x представляет независимую переменную (в данном случае годы)<br>
+      a представляет коэффициент сдвига<br>
+      b представляет коэффициент наклона</p>
+  </div>
+</div>
+<button class="button_restart" onclick="calculate()" type="button">Рассчитать функцию наклона и отрезок</button>
+<div class="result">Наклон: <span id="slope"></span></div>
+<div class="result">Отрезок: <span id="intercept"></span></div>
+<div id="chart"></div>
+
+
+<script>
+  function calculate() {
+    const table = document.getElementById('table');
+    const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+    const investments = [];
+    const gdp = [];
+
+    for (let i = 0; i < rows.length; i++) {
+      const cells = rows[i].getElementsByTagName('td');
+      const investment = parseFloat(cells[0].textContent);
+      const gdpValue = parseFloat(cells[1].textContent);
+
+      investments.push(investment);
+      gdp.push(gdpValue);
+    }
+
+    const x_mean = investments.reduce((acc, curr) => acc + curr, 0) / investments.length;
+    const y_mean = gdp.reduce((acc, curr) => acc + curr, 0) / gdp.length;
+
+    const numerator = investments.reduce((acc, curr, i) => acc + (curr - x_mean) * (gdp[i] - y_mean), 0);
+    const denominator = investments.reduce((acc, curr) => acc + Math.pow(curr - x_mean, 2), 0);
+
+    const slope = numerator / denominator;
+    const intercept = y_mean - slope * x_mean;
+
+    document.getElementById('slope').textContent = slope.toFixed(2);
+    document.getElementById('intercept').textContent = intercept.toFixed(2);
+
+    const trace = {
+      x: investments,
+      y: gdp,
+      mode: 'markers',
+      type: 'scatter',
+      name: 'Инвестиции vs ВВП',
+      marker: {
+        color: 'rgb(0, 123, 255)',
+        size: 8
+      }
+    };
+
+    const line = {
+      x: investments,
+      y: investments.map(x => slope * x + intercept),
+      mode: 'lines',
+      name: 'Линейная регрессия',
+      line: {
+        color: 'rgb(255,106,0)',
+        width: 2
+      }
+    };
+
+    const layout = {
+      xaxis: {
+        title: 'Инвестиции в основной капитал страны руб.'
+      },
+      yaxis: {
+        title: 'ВВП руб.'
+      }
+    };
+
+    const chartData = [trace, line];
+
+    Plotly.newPlot('chart', chartData, layout);
+
+  }
+
+  function openPopup3() {
+    document.getElementById("popup3").classList.add("active");
+  }
+
+  // Функция для закрытия всплывающего окна
+  function closePopup3() {
+    document.getElementById("popup3").classList.remove("active");
+  }
+
+  function openPage2() {
+    location.href = "../main.html";
+  }
+</script>
+</body>
+</html>

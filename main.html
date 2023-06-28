@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Линейная регрессия</title>
+    <link rel="stylesheet" href="scss/main.css">
+    <script src="js/main.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="logo/logo.svg" alt="за зеркалом">
+      </div>
+    </header>
+    <main>
+      <section class="layers">
+        <div class="layers__container">
+          <div class="layers__item layer-1"
+               style="background-image: url('background layers/layer-1.jpg')"></div>
+          <div class="layers__item layer-2"
+               style="background-image: url('background layers/layer-2.png')"></div>
+          <div class="layers__item layer-3">
+            <div class="main__content">
+              <h1 class="text__h">linear regression </h1>
+              <p class="text__p">the impact of investment on Russia's GDP</p>
+              <form>
+                <button onclick="openPopup()" class="button_info" type="button">Info</button>
+                <button onclick="openPopup2()" class="button_contact" type="button">Contact</button>
+                <button onclick="openPage()" class="button_start" type="button">Start</button>
+              </form>
+            </div>
+          </div>
+          <div class="layers__item layer-4">
+            <canvas class="rain"></canvas>
+          </div>
+          <div class="layers__item layer-5"
+               style="background-image: url('background layers/layer-5.png')"></div>
+          <div class="layers__item layer-6"
+               style="background-image: url('background layers/layer-6.png')"></div>
+        </div>
+        <div id="popup" class="popup">
+          <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p>Приведенный код реализует простую линейную регрессию для построения модели связи между двумя переменными 'x' (годы) и 'y' (инвестиции).<br>
+              Для вычисления коэффициентов линейной регрессии используются следующие:<br>
+              1. Среднее значение x_mean вычисляется путем суммирования всех значений переменной x и деления на их количество.<br>
+              2. Среднее значение y_mean вычисляется путем суммирования всех значений переменной `y` и деления на их количество.<br>
+              3. Числитель numerator вычисляется путем суммирования произведений разностей (curr - x_mean) * (y[i] - y_mean) для каждого значения x и соответствующего значения y.<br>
+              4. Знаменатель `denominator` вычисляется путем суммирования квадратов разностей `(curr - x_mean)` для каждого значения x.<br>
+              5. Коэффициент наклона (`slope`) вычисляется делением numerator на denominator.<br>
+              6. Коэффициент смещения (`y_intercept`) вычисляется путем вычитания произведения slope * x_mean из y_mean.<br>
+              7. Массив `regression_line` строится путем вычисления значения линейной регрессии для каждого значения `x` с помощью формулы `slope * year + y_intercept`.<br>
+              В итоге, в коде создается график, на котором отображаются исходные данные и линия линейной регрессии. Это позволяет визуализировать и оценить связь между переменными и построить прогнозные значения на основе модели линейной регрессии.
+            </p>
+          </div>
+        </div>
+        <div id="popup2" class="popup2">
+          <div class="popup-content2">
+            <span class="close2" onclick="closePopup2()">&times;</span>
+            <p>Выполнил работу: Кирилл Чупров</p>
+            <p><br></p>
+            <p>Как связаться:</p>
+            <p>kuprin121@yandex.ru</p>
+            <form action="">
+              <a href="https://vk.com/killeron121"><img src="./logo/icons-vk%20black.svg"/></a>
+              <a href="https://vk.com/killeron121"><img src="./logo/icons-vk%20black.svg"/></a>
+              <a href="https://vk.com/killeron121"><img src="./logo/icons-vk%20black.svg"/></a>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Линейная регрессия</title>
+    <link rel="stylesheet" href="css.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js" charset="utf-8"></script>
+    <script src="java.js"></script>
+  </head>
+  <body onmousemove="number_one(), number_two(), number_three(), number_four(), number_five(),
+  number_six(), number_seven(), number_eight(), number_nine(), number_ten(), number_eleven(),
+  VVP_one(), VVP_two(), VVP_three(), VVP_four(), VVP_five(),VVP_six(),
+    VVP_seven(), VVP_eight(), VVP_nine(), VVP_ten(), VVP_eleven()">
+    <h1>Линейная регрессия для инвестиций в ВВП России</h1>
+      <h4>Данные</h4>
+      <table>
+        <tr>
+          <td>год</td>
+          <td>2011</td>
+          <td>2012</td>
+          <td>2013</td>
+          <td>2014</td>
+          <td>2015</td>
+          <td>2016</td>
+          <td>2017</td>
+          <td>2018</td>
+          <td>2019</td>
+          <td>2020</td>
+          <td>2021</td>
+        </tr>
+        <tr>
+          <td>Инвестиции</td>
+          <td><input id="number_1" type="text" value="12443.6"></td>
+          <td><input id="number_2" type="text" value="14301.7"></td>
+          <td><input id="number_3" type="text" value="15618,9"></td>
+          <td><input id="number_4" type="text" value="16438,2"></td>
+          <td><input id="number_5" type="text" value="16617,47"></td>
+          <td><input id="number_6" type="text" value="18236,2"></td>
+          <td><input id="number_7" type="text" value="19654,4"></td>
+          <td><input id="number_8" type="text" value="20772,3"></td>
+          <td><input id="number_9" type="text" value="22360,1"></td>
+          <td><input id="number_10" type="text" value="23146,5"></td>
+          <td><input id="number_11" type="text" value="23146,5"></td>
+        </tr>
+        <tr>
+          <td>ВВП</td>
+          <td><input id="VVP_1" type="text" value="60114"></td>
+          <td><input id="VVP_2" type="text" value="68103,4"></td>
+          <td><input id="VVP_3" type="text" value="72985,7"></td>
+          <td><input id="VVP_4" type="text" value="79030,04"></td>
+          <td><input id="VVP_5" type="text" value="83087,36"></td>
+          <td><input id="VVP_6" type="text" value="85616,1"></td>
+          <td><input id="VVP_7" type="text" value="91843,2"></td>
+          <td><input id="VVP_8" type="text" value="103861,7"></td>
+          <td><input id="VVP_9" type="text" value="109608,3"></td>
+          <td><input id="VVP_10" type="text" value="107658,2"></td>
+          <td><input id="VVP_11" type="text" value="135295"></td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td>Параметр b</td>
+          <td><input type="number" id="slopeInput" value="5.06"></td>
+        </tr>
+        <tr class="bbb">
+          <td>Параметр a</td>
+          <td><input type="number" id="interceptInput" value="1172.40"></td>
+        </tr>
+      </table>
+      <input class="button_restart" onclick="click1()" type="submit" value="RESTART">
+      <button class="button_restart" onclick="BackPage()" type="button">Back</button>
+      <div class="formula_y">
+        <button onclick="openPopup3()" class="button_restart2" type="button">y = a + b * x</button>
+      </div>
+    <div id="popup3" class="popup3">
+      <div class="popup-content3">
+        <span class="close3" onclick="closePopup3()">&times;</span>
+        <p>y представляет зависимую переменную (в данном случае доля инвестиций в ВВП)<br>
+          x представляет независимую переменную (в данном случае годы)<br>
+          a представляет коэффициент сдвига<br>
+          b представляет коэффициент наклона</p>
+      </div>
+    </div>
+    <div id="plot" class="plot"></div>
+    <script>
+      function click1(){
+        updatePlot()
+      }
+    </script>
+  </body>
+</html>
