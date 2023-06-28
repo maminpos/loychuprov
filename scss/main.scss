@@ -1,0 +1,247 @@
+@import "text_family";
+
+:root {
+  --index: calc(1vw + 1vh);
+  --transition: 1.5s cubic-bezier(.1,.59,.02,.77);
+}
+
+html {
+  color: #EFEFEFFF;
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  ::-webkit-scrollbar {
+    background-color: rgb(255, 0, 0, 0); /* Цвет фона */
+    width: 0; /* Ширина полосы */
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #343131; /* Цвет полосы */
+  }
+
+  body {
+    background-color: #131313;
+    font-family: kamerik-3d, sans-serif;
+  }
+
+  header {
+    .logo {
+      img {
+        --logo-size: calc(var(--index) * 7);
+        position: absolute;
+        background-repeat: no-repeat;
+        left: calc(51% - calc(var(--logo-size) / 2) );
+        top: calc(var(--index) * 2.8);
+        z-index: 1;
+        width: var(--logo-size);
+        height: var(--logo-size);
+      }
+    }
+  }
+
+  main {
+    .layers {
+      perspective: 1000px;
+      overflow: hidden;
+
+      .layers__container {
+        height: 100vh;
+        min-height: 500px;
+        transform-style: preserve-3d;
+        transform: rotateX(var(--move-y)) rotateY(var(--move-x));
+        will-change: transform;
+        transition: transform var(--transition);
+
+        .layers__item {
+          position: absolute;
+          background-size: cover;
+          background-position: center;
+          top: -5vw;
+          bottom: -5vw;
+          left: -5vw;
+          right: -5vw;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .layer-1 {
+          transform: translateZ(-60px) scale(1.3);
+        }
+
+        .layer-2 {
+          transform: translateZ(100px) scale(1.2);
+        }
+
+        .layer-3 {
+          transform: translateZ(180px) scale(0.8);
+        }
+
+        .layer-4 {
+          transform: translateZ(200px) scale(0.8);
+          pointer-events: none;
+        }
+
+        .layer-5 {
+          transform: translateZ(300px) scale(0.9);
+          pointer-events: none;
+        }
+
+        .layer-6 {
+          transform: translateZ(380px);
+          pointer-events: none;
+        }
+        .main__content {
+          text-align: center;
+          font-size: calc(var(--index) * 2);
+          text-transform: uppercase;
+          line-height: 1.5em;
+          margin-top: calc(var(--index) * 5);
+
+          span {
+            display: block;
+          }
+
+          p {
+            text-transform: none;
+            font-family: merriweather-italic-3d, sans-serif;
+            letter-spacing: normal;
+            font-size: calc(var(--index) * 1);
+            line-height: 2;
+            color: #EFEFEFFF;
+          }
+
+          button {
+            font-family: Arial,sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: calc(var(--index) * 0.8);
+            letter-spacing: -0.05vw;
+            padding: calc(var(--index) * 0.6) calc(var(--index) * 2);
+            color: #EFEFEFFF;
+            background-color: rgb(0,0,0,0);
+            border: 3px solid rgba(222, 220, 213, 0.4);
+            border-radius: calc(var(--index) * 10);
+            outline: none;
+            cursor: pointer;
+          }
+          button:hover {
+            border: 3px solid #efefef;
+            transition: 0.7s;
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+
+  }
+}
+
+/* Скрыть всплывающее окно по умолчанию */
+.popup {
+  display: none;
+}
+
+/* Стили для содержимого всплывающего окна */
+.popup-content {
+  font-family: Arial, sans-serif;
+  color: #131313;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px #999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Стиль для кнопки закрытия всплывающего окна */
+.close {
+  font-family: Arial, sans-serif;
+  color: #131313;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Отображение всплывающего окна при активации */
+.popup.active {
+  font-family: Arial, sans-serif;
+  color: #131313;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110%;
+  z-index: 999;
+}
+
+/* Скрыть всплывающее окно по умолчанию */
+.popup2 {
+  display: none;
+
+  form {
+    margin-top: 10px;
+
+    a {
+      width: calc(var(--index) * 0.5);
+      height: calc(var(--index) * 0.5);
+      background-image: url("./logo/icons-vk black.svg");
+    }
+
+    a:hover {
+      background-color: rgba(54, 53, 53, 0.4);
+      border-radius: 3px;
+      transition: 1s;
+    }
+  }
+}
+
+/* Стили для содержимого всплывающего окна */
+.popup-content2 {
+  font-family: Arial, sans-serif;
+  color: #131313;
+  background-color: #fff;
+  padding: 50px 50px 40px 50px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px #999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Стиль для кнопки закрытия всплывающего окна */
+.close2 {
+  font-family: Arial, sans-serif;
+  color: #131313;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Отображение всплывающего окна при активации */
+.popup2.active {
+  font-family: Arial, sans-serif;
+  color: #131313;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110%;
+  z-index: 999;
+}
